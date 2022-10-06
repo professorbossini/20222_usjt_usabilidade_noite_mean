@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Cliente } from '../cliente.model';
 
 @Component({
   selector: 'app-cliente-lista',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cliente-lista.component.css']
 })
 export class ClienteListaComponent{
-  @Input() clientes = []  
+  @Input() clientes: Cliente[] = []  
 }
 
 
