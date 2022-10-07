@@ -5,7 +5,13 @@ import { Cliente } from "./cliente.model";
 @Injectable({providedIn: 'root'})
 export class ClienteService {
 
-  private clientes: Cliente[] = []
+  private clientes: Cliente[] = [
+    {
+      nome: 'Ana',
+      fone: '12345678',
+      email: 'ana@email.com'
+    }
+  ]
 
   getClientes(): Cliente[]{
     return [...this.clientes]  

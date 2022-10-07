@@ -1,13 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente.model';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-cliente-lista',
   templateUrl: './cliente-lista.component.html',
   styleUrls: ['./cliente-lista.component.css']
 })
-export class ClienteListaComponent{
-  @Input() clientes: Cliente[] = []  
+export class ClienteListaComponent implements OnInit{
+  clientes: Cliente[] = []
+
+  constructor(private clienteService: ClienteService){
+
+  }  
+
+  ngOnInit(): void {
+    this.clientes = this.clienteService.getClientes()
+  }
+
+
 }
 
 
