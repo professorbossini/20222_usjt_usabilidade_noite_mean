@@ -11,7 +11,7 @@ import { ClienteService } from '../cliente.service';
 
 export class ClienteInserirComponent {
 
-  constructor(private clienteService: ClienteService){
+  constructor(private clienteService: ClienteService) {
   }
 
   onAdicionarCliente(form: NgForm) {
@@ -21,6 +21,7 @@ export class ClienteInserirComponent {
       form.value.fone,
       form.value.email
     )
+    form.resetForm();
   }
 
 }
