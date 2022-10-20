@@ -9,9 +9,9 @@ app.use(cors());
 const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_CLUSTER, MONGODB_HOST } =
   process.env;
 
-const urlMongoDB =
-  "mongodb+srv://jcarmino:jcarmino@cluster0.rcjhbzp.mongodb.net/?retryWrites=true&w=majority";
-//const urlMongoDB = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/?retryWrites=true&w=majority`
+// const urlMongoDB =
+  // "mongodb+srv://jcarmino:jcarmino@cluster0.rcjhbzp.mongodb.net/?retryWrites=true&w=majority";
+const urlMongoDB = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/?retryWrites=true&w=majority`
 const Cliente = require("./models/cliente");
 
 mongoose
@@ -51,9 +51,13 @@ app.post("/api/clientes", (req, res) => {
     fone: req.body.fone,
     email: req.body.email,
   });
-  cliente.save();
-  console.log(cliente);
-  res.status(201).json({ mensagem: "Cliente inserido" });
+  cliente.save().then (clienteInserido => {
+    console.log(cliente);
+    res.status(201).json({ 
+      mensagem: "Cliente inserido",
+      id: clienteInserido._id
+    });
+  });
 });
 
 app.get("/api/clientes", (req, res, next) => {
