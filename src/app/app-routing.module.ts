@@ -7,7 +7,9 @@ const routes: Routes = [
   // localhost:4200/ => renderizar a lista
   { path: "", component: ClienteListaComponent },
   // localhost:4200/criar => exibir o componente de cadastro
-  { path: 'criar', component: ClienteInserirComponent}
+  { path: 'criar', component: ClienteInserirComponent},
+  //localhost:4200/editar/123456 => exibir o componente de cadastro
+  {path: 'editar/:idCliente', component: ClienteInserirComponent}
 ];
 
 @NgModule({

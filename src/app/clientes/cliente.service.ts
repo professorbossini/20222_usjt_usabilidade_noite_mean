@@ -42,6 +42,13 @@ export class ClienteService {
       )
   }
 
+  getCliente(idCliente: string) {
+    return { ...this.clientes.find(cli => cli.id === idCliente) }
+    // {id: "fewa", nome: "feawfewa", fone: 'fewafwea', email: "fewafea"}
+    // id: "fewa", nome: "feawfewa", fone: 'fewafwea', email: "fewafea"
+    // {id: "fewa", nome: "feawfewa", fone: 'fewafwea', email: "fewafea"}
+  }
+
   adicionarCliente(nome: string, fone: string, email: string): void {
     const cliente: Cliente = {
       id: "", nome, fone, email
