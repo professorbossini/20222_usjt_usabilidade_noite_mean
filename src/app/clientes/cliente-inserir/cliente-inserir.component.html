@@ -11,6 +11,7 @@
         matInput
         placeholder="nome"
         name="nome"
+        [ngModel]="cliente?.nome"
         ngModel
         required
         minlength="2"/>
@@ -24,6 +25,7 @@
         placeholder="fone"
         ngModel
         name="fone"
+        [ngModel]="cliente?.fone"
         required />
       <mat-error>Digite um fone válido</mat-error>
     </mat-form-field>
@@ -34,6 +36,7 @@
         matInput
         placeholder="email"
         name="email"
+        [ngModel]="cliente?.email"
         ngModel
         email
         required />

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const clienteRoutes = require ('./rotas/clientes');
+const clienteRoutes = require("./rotas/clientes");
 const cors = require("cors");
 const app = express();
 app.use(express.json());
@@ -10,9 +10,10 @@ app.use(cors());
 const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_CLUSTER, MONGODB_HOST } =
   process.env;
 
- const urlMongoDB =
- "mongodb+srv://jcarmino:jcarmino@cluster0.rcjhbzp.mongodb.net/?retryWrites=true&w=majority";
-//const urlMongoDB = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/?retryWrites=true&w=majority`
+//const urlMongoDB =
+// "mongodb+srv://jcarmino:jcarmino@cluster0.rcjhbzp.mongodb.net/?retryWrites=true&w=majority";
+
+const urlMongoDB = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/?retryWrites=true&w=majority`;
 const Cliente = require("./models/cliente");
 
 mongoose
@@ -47,6 +48,7 @@ const clientes = [
 ];
 
 //app.use (clienteRoutes);
-app.use ('/api/clientes', clienteRoutes);
+
+app.use("/api/clientes", clienteRoutes);
 
 module.exports = app;
