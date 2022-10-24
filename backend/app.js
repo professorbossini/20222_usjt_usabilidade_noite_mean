@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const clienteRoutes = require ('./rotas/clientes');
 const cors = require("cors");
 const app = express();
 app.use(express.json());
@@ -9,9 +10,9 @@ app.use(cors());
 const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_CLUSTER, MONGODB_HOST } =
   process.env;
 
-// const urlMongoDB =
-  // "mongodb+srv://jcarmino:jcarmino@cluster0.rcjhbzp.mongodb.net/?retryWrites=true&w=majority";
-const urlMongoDB = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/?retryWrites=true&w=majority`
+ const urlMongoDB =
+ "mongodb+srv://jcarmino:jcarmino@cluster0.rcjhbzp.mongodb.net/?retryWrites=true&w=majority";
+//const urlMongoDB = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/?retryWrites=true&w=majority`
 const Cliente = require("./models/cliente");
 
 mongoose
@@ -45,36 +46,7 @@ const clientes = [
   },
 ];
 
-app.post("/api/clientes", (req, res) => {
-  const cliente = new Cliente({
-    nome: req.body.nome,
-    fone: req.body.fone,
-    email: req.body.email,
-  });
-  cliente.save().then (clienteInserido => {
-    console.log(cliente);
-    res.status(201).json({ 
-      mensagem: "Cliente inserido",
-      id: clienteInserido._id
-    });
-  });
-});
-
-app.get("/api/clientes", (req, res, next) => {
-  Cliente.find().then((documents) => {
-    console.log(documents);
-    res.status(200).json({
-      mensagem: "Tudo OK",
-      clientes: documents,
-    });
-  });
-});
-
-app.delete("/api/clientes/:id", (req, res, next) =>{
-  Cliente.deleteOne ({_id: req.params.id}).then((resultado) => {
-    console.log (resultado);
-    res.status(200).json({mensagem: "Cliente removido"})
-    });
-})
+//app.use (clienteRoutes);
+app.use ('/api/clientes', clienteRoutes);
 
 module.exports = app;
