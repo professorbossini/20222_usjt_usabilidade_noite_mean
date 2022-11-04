@@ -103,5 +103,11 @@ export class ClienteInserirComponent implements OnInit {
     this.form.reset()
     this.estaCarregando = false;
   }
+
+  onImagemSelecionada (event: Event){
+    const arquivo = (event.target as HTMLInputElement).files[0]
+    console.log(arquivo)
+
+  }
 }
 
