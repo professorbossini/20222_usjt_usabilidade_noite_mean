@@ -1,5 +1,6 @@
+<mat-spinner *ngIf="estaCarregando"></mat-spinner>
 <!-- *ngIf também é uma diretiva estrutural -->
-<mat-accordion *ngIf="clientes.length > 0">
+<mat-accordion *ngIf="clientes.length > 0 && !estaCarregando">
   <!-- *ngFor é uma diretiva estrutural -->
   <mat-expansion-panel *ngFor="let cliente of clientes">
     <mat-expansion-panel-header>
@@ -15,7 +16,7 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p *ngIf="clientes.length <= 0" class="mat-body-1" style="text-align: center">
+<p *ngIf="clientes.length <= 0 && !estaCarregando" class="mat-body-1" style="text-align: center">
   Nenhum cliente cadastrado
 </p>
 

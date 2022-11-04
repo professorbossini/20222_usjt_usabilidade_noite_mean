@@ -11,17 +11,20 @@ import { Subscription, Observable } from 'rxjs';
 export class ClienteListaComponent implements OnInit, OnDestroy {
   clientes: Cliente[] = []
   clientesSubscription: Subscription;
+  public estaCarregando = false
 
   constructor(private clienteService: ClienteService) {
 
   }
 
   ngOnInit(): void {
+    this.estaCarregando = true
     this.clienteService.getClientes();
     this.clientesSubscription = this.clienteService
       .getListaDeClientesAtualizadaObservable()
       .subscribe((clientes: Cliente[]) => {
         this.clientes = clientes;
+        this.estaCarregando = false
       });
   }
   ngOnDestroy(): void {

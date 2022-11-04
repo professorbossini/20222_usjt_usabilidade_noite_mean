@@ -1,9 +1,9 @@
 <mat-card>
   <mat-spinner *ngIf="estaCarregando"></mat-spinner>
   <form
-    (submit)="onSalvarCliente(clienteForm)"
-    *ngIf="!estaCarregando"
-    #clienteForm="ngForm">
+    [formGroup]="form"
+    (submit)="onSalvarCliente()"
+    *ngIf="!estaCarregando">
 
     <mat-form-field>
       <input
@@ -11,21 +11,24 @@
         matInput
         placeholder="nome"
         name="nome"
-        [ngModel]="cliente?.nome"
-        ngModel
         required
+        formControlName="nome"
         minlength="2"/>
       <mat-error>Digite um nome válido</mat-error>
     </mat-form-field>
+
+    <div>
+      <button mat-stroked-button type="button" (click)="selecionaArquivo.click()">Selecionar Imagem</button>
+      <input type="file" #selecionaArquivo>
+    </div>
 
     <mat-form-field>
       <input
         type="text"
         matInput
         placeholder="fone"
-        ngModel
+        formControlName="fone"
         name="fone"
-        [ngModel]="cliente?.fone"
         required />
       <mat-error>Digite um fone válido</mat-error>
     </mat-form-field>
@@ -36,9 +39,8 @@
         matInput
         placeholder="email"
         name="email"
-        [ngModel]="cliente?.email"
-        ngModel
         email
+        formControlName="email"
         required />
       <mat-error>Digite um e-mail válido</mat-error>
     </mat-form-field>
